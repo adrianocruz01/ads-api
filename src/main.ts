@@ -8,8 +8,10 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Facebook Ads API')
     .setDescription(
-      'API para integração e gestão de campanhas do Facebook Ads. Criado por Adriano Cruz. Saiba mais: [Adriano Cruz no LinkedIn](https://www.linkedin.com/in/adrianocruz01/)',
+      'API para integração e gestão de campanhas do Facebook Ads. Criado por Adriano Cruz. Saiba mais: [Adriano Cruz](https://www.linkedin.com/in/adrianocruz01/)',
     )
+    .addTag('Login')
+    .addTag('Ads')
     .setVersion('1.0')
     .build();
 

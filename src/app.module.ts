@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AdsModule } from './libs/ads/ads.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module'; // Certifique-se de que está importando o AuthModule
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
     }),
     AdsModule,
+    AuthModule, // Certifique-se de que o AuthModule está aqui
   ],
 })
 export class AppModule {}

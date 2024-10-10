@@ -1,16 +1,19 @@
-import { Controller, Get, Post, Param, Body, HttpCode, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, HttpCode, BadRequestException, UseGuards } from '@nestjs/common';
 import { AdsService } from './ads.service';
-import { Ad } from './ad.model';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Ad } from './model/ad.model';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateAdDto } from './dto/create-campain-dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Ads')
+@ApiBearerAuth()
 @Controller('ads')
 export class AdsController {
   constructor(
     private readonly adsService: AdsService
   ) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('')
   @HttpCode(200)
   @ApiOperation({ summary: 'Obter todas as campanhas' })
@@ -23,6 +26,7 @@ export class AdsController {
     return this.adsService.findAll();
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   @HttpCode(200)
   @ApiOperation({ summary: 'Obter uma campanha específica' })
@@ -43,6 +47,7 @@ export class AdsController {
     return campain;
   }
   
+  @UseGuards(AuthGuard('jwt'))
   @Get('/fetch/facebook')
   @HttpCode(201)
   @ApiOperation({ summary: 'Obter todas campanhas do Facebook' })
@@ -59,6 +64,7 @@ export class AdsController {
     return result;
   }
   
+  @UseGuards(AuthGuard('jwt'))
   @Post('create')
   @HttpCode(201)
   @ApiOperation({ summary: 'Criar ou atualizar uma campanha' })

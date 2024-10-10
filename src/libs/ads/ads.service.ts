@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Ad } from './ad.model';
+import { Ad } from './model/ad.model';
 import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
 import { scheduleAdsFetch } from '../cron/cron';
@@ -29,7 +29,7 @@ export class AdsService {
     } else {
       return await this.adModel.create(adData);
     }
-    
+
   }
 
   async findOne(id: string): Promise<Ad> {
